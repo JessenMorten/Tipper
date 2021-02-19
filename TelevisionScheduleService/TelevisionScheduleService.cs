@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -15,11 +16,17 @@ namespace TelevisionScheduleService
     {
         private readonly ILogger<TelevisionScheduleService> _logger;
 
+        private readonly IOptions<TelevisionScheduleServiceOptions> _options;
+
         private readonly IDistributedCache _cache;
 
-        public TelevisionScheduleService(ILogger<TelevisionScheduleService> logger, IDistributedCache cache)
+        public TelevisionScheduleService(
+            ILogger<TelevisionScheduleService> logger,
+            IOptions<TelevisionScheduleServiceOptions> options,
+            IDistributedCache cache)
         {
             _logger = logger;
+            _options = options;
             _cache = cache;
         }
 
@@ -33,7 +40,7 @@ namespace TelevisionScheduleService
             }
 
             using var client = new HttpClient();
-            var response = await client.GetAsync("...");
+            var response = await client.GetAsync(_options.Value.GetChannelsEndpoint);
             response.EnsureSuccessStatusCode();
             var data = await response.Content.ReadFromJsonAsync<GetChannelsResponse>();
             var channels = new List<TelevisionChannel>();

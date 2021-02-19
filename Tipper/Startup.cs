@@ -32,6 +32,7 @@ namespace Tipper
 
             if (_configuration.IsProduction())
             {
+                services.Configure<TelevisionScheduleServiceOptions>(_configuration.GetSection(nameof(TelevisionScheduleServiceOptions)));
                 services.AddTransient<ITelevisionScheduleService, TelevisionScheduleService.TelevisionScheduleService>();
             }
             else
