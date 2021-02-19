@@ -31,7 +31,7 @@ export const TipBuilder = () => {
         return (
             <>
                 <h4 className="text-center my-3">Vælg kanal</h4>
-                <input className="form-control rounded-pill text-center" placeholder="S�g kanaler..." />
+                <input className="form-control rounded-pill text-center" placeholder="Søg kanaler..." />
                 <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4">
                     {channels.map(c => (
                         <button key={c.id} className="btn col p-3" onClick={() => setTipChannel(c)}>
