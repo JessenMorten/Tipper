@@ -23,11 +23,3 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Setup node
-      uses: actions/setup-node@v2
-      with:
-        node-version: '12'
-    - name: npm ci
-      run: npm ci
-    - name: npm run build
-      run: npm run build
