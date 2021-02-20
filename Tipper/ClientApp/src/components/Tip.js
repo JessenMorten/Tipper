@@ -3,7 +3,7 @@ import React from 'react';
 export const Tip = ({ channelTitle, tipTime, programTitle }) => {
     const recipient = "natholdet@tv2.dk";
     const subject = `Jeg har et tip!`;
-    const body = `Kære Natholdet, jeg har et tip! Jeg så "${programTitle}" på ${channelTitle}, ${tipTime}...`;
+    const body = `KÃ¦re Natholdet, jeg har et tip! Jeg sÃ¥ "${programTitle}" pÃ¥ ${channelTitle}, ${tipTime}...`;
     const mailto = `mailto:${recipient}?subject=${encodeURI(subject)}&body=${encodeURI(body)}`;
 
     return (
