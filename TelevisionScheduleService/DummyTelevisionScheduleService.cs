@@ -24,6 +24,22 @@ namespace TelevisionScheduleService
             };
         }
 
+        public async Task<IEnumerable<TelevisionProgramDescription>> FetchProgramDescriptions(string channelId, DateTime dateTime, CancellationToken cancellationToken = default)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(0.5), cancellationToken);
+
+            var startTime = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 0, 0, 0);
+            var stopTime = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59);
+
+            var startTimeUnix = ((DateTimeOffset)startTime).ToUnixTimeSeconds();
+            var stopTimeUnix = ((DateTimeOffset)stopTime).ToUnixTimeSeconds();
+
+            return new TelevisionProgramDescription[]
+            {
+                new TelevisionProgramDescription { Id = "12345", Title = "News and Weather", StartTimeUnix = startTimeUnix, StopTimeUnix = stopTimeUnix }
+            };
+        }
+
         private string CreateSvgLogo(string color)
         {
             return "<svg xmlns=\"http://www.w3.org/2000/svg\" " +
