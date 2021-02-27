@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+
+  tipper:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - "8080:5000"
